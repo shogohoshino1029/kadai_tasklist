@@ -35,15 +35,15 @@ public class IndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
 
-        List<Task> tasklists = em.createNamedQuery("getAllTasklists", Task.class)
+        List<Task> tasks = em.createNamedQuery("getAllTasks", Task.class)
                                      .getResultList();
-        response.getWriter().append(Integer.valueOf(tasklists.size()).toString());
+        response.getWriter().append(Integer.valueOf(tasks.size()).toString());
 
         em.close();
 
-        request.setAttribute("tasklists", tasklists);
+        request.setAttribute("tasks", tasks);
 
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/tasklists/index.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/tasks/index.jsp");
         rd.forward(request,  response);
     }
 
