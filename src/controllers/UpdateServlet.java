@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.Tasklist;
+import models.Task;
 import utils.DBUtil;
 
 /**
@@ -46,7 +46,7 @@ public class UpdateServlet extends HttpServlet {
 
             // セッションスコープからタスクリストのIDを取得して
             // 該当のIDのタスクリスト1件のみをデータベースから取得
-            Tasklist t = em.find(Tasklist.class, (Integer)(request.getSession().getAttribute("tasklist_id")));
+            Task t = em.find(Task.class, (Integer)(request.getSession().getAttribute("tasklist_id")));
 
             // フォームの内容を各プロパティに上書き
             String content = request.getParameter("content");
